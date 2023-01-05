@@ -1,6 +1,6 @@
 # Sistema_Educativo
 
-#Integrantes:
+Integrantes:
 - Joel Arias
 - Robbi Coronel
 - Fernanda Guaraca
