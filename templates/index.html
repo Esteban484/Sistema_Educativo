@@ -1,0 +1,102 @@
+{% extends 'base.html' %} {% block content %}
+
+
+
+<!-- Service Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <a href={{ url_for( 'docentes' ) }}>
+                    <div class="service-item text-center pt-3">
+                        <div class="p-4">
+                            <i class="fa fa-3x bi bi-person-bounding-box text-primary mb-4"></i>
+                            <h5 class="mb-3">Docentes</h5>
+                            <p>Se puede encontrar informacion de los docentes de los cursos.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <a href={{ url_for( 'cursos' ) }}>
+                    <div class="service-item text-center pt-3">
+                        <div class="p-4">
+                            <i class="fa fa-3x bi bi-journal-bookmark-fill text-primary mb-4"></i>
+                            <h5 class="mb-3">Cursos</h5>
+                            <p>Informacion de los cursos ofertados.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                <a href={{ url_for( 'inscripciones' ) }}>
+                <div class="service-item text-center pt-3">
+                    <div class="p-4">
+                        <i class="fa fa-3x bi bi-card-checklist text-primary mb-4"></i>
+                        <h5 class="mb-3">Incribirse</h5>
+                        <p>Incribirse para empezar un curso.</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                <a href={{ url_for( 'info' ) }}>
+                <div class="service-item text-center pt-3">
+                    <div class="p-4">
+                        <i class="fa fa-3x bi bi-info-circle text-primary mb-4"></i>
+                        <h5 class="mb-3">Informacion</h5>
+                        <p>Informacion de los cursos</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+
+
+<!-- About Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                <div class="position-relative h-100">
+                    <img class="img-fluid position-absolute w-150 h-100" src="{{ fondo }}" alt="" style="object-fit: cover;">
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                <h6 class="section-title bg-white text-start text-primary pe-3">Aprende con Nosotros</h6>
+                <h1 class="mb-4">Bienvenid@ a SISEDU</h1>
+                <p class="mb-4">Phasellus mollis, arcu a consectetur fringilla, nisl ante lobortis turpis, sed faucibus augue massa et ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque id eleifend ligula. Morbi sed molestie purus. Aliquam sit amet felis eget tortor consectetur dignissim egestas et dolor.</p>
+                <p class="mb-4">Donec consectetur metus sed faucibus tristique. Praesent porta felis eget magna dapibus hendrerit. Sed congue, felis sagittis volutpat consequat, erat tellus eleifend nulla, in mollis lacus massa sed mi. Nunc varius diam ut diam efficitur bibendum. Vestibulum at laoreet leo. Integer finibus nec libero at blandit. Nulla malesuada suscipit ipsum nec aliquet. Curabitur ac urna ut libero faucibus euismod auctor sed dui. Pellentesque posuere risus turpis, et congue turpis vehicula vel. Maecenas vel molestie ante.</p>
+                <div class="row gy-2 gx-4 mb-4">
+                    <div class="col-sm-6">
+                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Profesores capacitados</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Certificaciones Nacionales</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Clases Online</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Metodología Agile</p>
+                    </div>
+                   
+                </div>
+                <a class="btn btn-primary py-3 px-5 mt-2" href={{ url_for( 'info' ) }}>Más información</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+<script>
+    $(document).ready(function() {
+        $("#docentes").click(function() {
+            $(this).hide();
+        });
+    });
+</script>
+
+{% endblock %}

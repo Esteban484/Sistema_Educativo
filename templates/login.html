@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% block content %}
+<div class="p-4"></div>
+<div class="container ">
+    <!-- Section: Design Block -->
+    <section class="text-center">
+        <!-- Background image -->
+        <div class="p-5 bg-image" style="
+          background-image: url('https://i.pinimg.com/564x/f2/a5/33/f2a53388828bef912db68d2c4ae7882d.jpg');
+          height: 300px;
+          "></div>
+        <!-- Background image -->
+
+        <div class="card mx-4 mx-md-5 shadow-5-strong" style="
+          margin-top: -100px;
+          background: hsla(0, 0%, 100%, 0.8);
+          backdrop-filter: blur(30px);
+          ">
+            <div class="card-body py-5 px-md-5">
+
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <h2 class="fw-bold mb-5">Acceso al Sistema</h2>
+                        {% if error %}
+                        <p style="color: red">{{ error }}</p>
+                        {% endif %}
+                        <form action="/login" method="post">
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                                <input type="text" id="username" name="username" class="form-control" />
+                                <label class="form-label" for="form3Example3">Cédula</label>
+                            </div>
+
+                            <!-- Password input -->
+                            <div class="form-outline mb-4">
+                                <input type="password" id="password" name="password" class="form-control" />
+                                <label class="form-label" for="form3Example4">Contaseña</label>
+                            </div>
+
+
+
+                            <!-- Submit button -->
+                            <button type="submit" value="Submit" class="btn btn-dark btn-block mb-4">Iniciar sesión</button>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- Section: Design Block -->
+{% endblock %}
