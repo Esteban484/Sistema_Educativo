@@ -78,87 +78,146 @@ def login():
   return render_template('login.html', error=error)
 
 
-@app.route('/inscribir_estudiante', methods=['POST'])
+@app.route('/inscribir_estudiante', methods = ["GET","POST"])
 def inscribir_estudiante():
-  # obtener los datos del formulario
-  nombre = request.form['nombre']
-  apellido = request.form['apellido']
-  cedula = request.form['cedula']
-  contraseña = request.form['contrasenia']
-  machine = request.form.get('machine')
-  vision = request.form.get('vision')
-  progra = request.form.get('programacion')
-  ingenieria = request.form.get('ingenieria')
-  # conectarse a la base de datos
-  cur = connection.cursor()
+    # obtener los datos del formulario
+    nombre = request.form['nombre']
+    apellido = request.form['apellido']
+    cedula = request.form['cedula']
+    contraseña = request.form['contrasenia']
+    curso = request.form.get('inlineRadioOptions')
+    # conectarse a la base de datos
+    cur = connection.cursor()
 
-  # ejecutar la consulta INSERT con parámetros de sustitución
-  cur.execute(
-    '''INSERT INTO estudiante (cedula_est, contrasenia, nombre, apellido, curso) VALUES (%s, %s, %s,%s,%s)''',
-    (cedula, contraseña, nombre, apellido, machine))
+    # ejecutar la consulta INSERT con parámetros de sustitución
+    cur.execute('''INSERT INTO estudiante (id_est, contrasenia, nombre, apellido, curso) VALUES (%s, %s, %s,%s,%s)''', (cedula, contraseña, nombre,apellido,curso))
+    connection.ping()
+    # confirmar la transacción
+    connection.commit()
+    connection.ping()
+    cur.close()
+    connection.close()
 
-  # confirmar la transacción
-  connection.commit()
-  cur.close()
-  connection.close()
+    return render_template('insc.html',result = 'Usuario agregado exitosamente. Inicie Sesión')
 
-  return 'Usuario agregado exitosamente'
+@app.route('/inscripcion_estudiante_admin', methods = ["GET","POST"])
+def inscripcion_estudiante_admin():
+    # obtener los datos del formulario
+    nombre = request.form['nombre']
+    apellido = request.form['apellido']
+    cedula = request.form['cedula']
+    contraseña = request.form['contrasenia']
+    curso = request.form.get('inlineRadioOptions')
+    # conectarse a la base de datos
+    cur = connection.cursor()
+
+    # ejecutar la consulta INSERT con parámetros de sustitución
+    cur.execute('''INSERT INTO estudiante (id_est, contrasenia, nombre, apellido, curso) VALUES (%s, %s, %s,%s,%s)''', (cedula, contraseña, nombre,apellido,curso))
+    connection.ping()
+    # confirmar la transacción
+    connection.commit()
+    connection.ping()
+    cur.close()
+    connection.ping()
+    connection.close()
+
+    return render_template('inscribir_estudiante.html',result = 'Usuario agregado exitosamente. Inicie Sesión')
+
+@app.route('/inscripcion_docente_admin', methods = ["GET","POST"])
+def inscripcion_docente_admin():
+    # obtener los datos del formulario
+    nombre = request.form['nombre']
+    apellido = request.form['apellido']
+    cedula = request.form['cedula']
+    contraseña = request.form['contrasenia']
+    curso = request.form.get('inlineRadioOptions')
+    # conectarse a la base de datos
+    cur = connection.cursor()
+
+    # ejecutar la consulta INSERT con parámetros de sustitución
+    cur.execute('''INSERT INTO profesor (id_profesor, contrasenia, nombre, apellido, curso_dirigido) VALUES (%s, %s, %s,%s,%s)''', (cedula, contraseña, nombre,apellido,curso))
+    connection.ping()
+    # confirmar la transacción
+    connection.commit()
+    connection.ping()
+    cur.close()
+    connection.ping()
+    connection.close()
+
+    return render_template('inscribir_docente.html',result = 'Usuario agregado exitosamente. Inicie Sesión')
 
 
-@app.route('/docentes', methods=["GET", "POST"])
-def docentes():
-  return render_template('docentes.html')
 
-
-@app.route('/inscripciones', methods=["GET", "POST"])
+@app.route('/inscripciones', methods = ["GET","POST"])
 def inscripciones():
-  return render_template('insc.html')
+    return render_template('insc.html')
 
-
-@app.route('/alumno1', methods=["GET", "POST"])
+@app.route('/alumno1', methods = ["GET","POST"])
 def alumno1():
-  # Verificar si el usuario ha iniciado sesión
-  if 'username' in session:
-    # Mostrar la página de "home"
-    return render_template('alumno1.html')
-  else:
-    # Redirigir al usuario al formulario de inicio de sesión
-    return redirect(url_for('login'))
+    # Verificar si el usuario ha iniciado sesión
+    if 'username' in session:
+        # Mostrar la página de "home"
+        return render_template('alumno1.html')
+    else:
+        # Redirigir al usuario al formulario de inicio de sesión
+        return redirect(url_for('login'))
+    
 
-
-@app.route('/about', methods=["GET", "POST"])
+@app.route('/about', methods = ["GET","POST"])
 def about():
-  joel = os.path.join(app.config['UPLOAD_FOLDER'], 'joel.jpeg')
-  robbi = os.path.join(app.config['UPLOAD_FOLDER'], 'robbi.jpg')
-  fer = os.path.join(app.config['UPLOAD_FOLDER'], 'fer.jpg')
-  nando = os.path.join(app.config['UPLOAD_FOLDER'], 'nando.jpg')
-  esteban = os.path.join(app.config['UPLOAD_FOLDER'], 'esteban.jpg')
-  return render_template('about.html',
-                         joel=joel,
-                         robbi=robbi,
-                         fer=fer,
-                         nando=nando,
-                         esteban=esteban)
+    cami = os.path.join(app.config['UPLOAD_FOLDER'], 'cami.jpeg')
+    joss = os.path.join(app.config['UPLOAD_FOLDER'], 'joss.jpeg')
+    gus = os.path.join(app.config['UPLOAD_FOLDER'], 'gus.jpg')
+    jona = os.path.join(app.config['UPLOAD_FOLDER'], 'jona.jpg')
+    alexis = os.path.join(app.config['UPLOAD_FOLDER'], 'alexis.jpeg')
+    return render_template('about.html',cami=cami, joss=joss , gus=gus, jona=jona,alexis=alexis)
 
+@app.route('/docentes', methods = ["GET","POST"])
+def docentes():
+    profe1 = os.path.join(app.config['UPLOAD_FOLDER'], 'profe1.jpg')
+    profe2 = os.path.join(app.config['UPLOAD_FOLDER'], 'profe2.jpg')
+    profe3 = os.path.join(app.config['UPLOAD_FOLDER'], 'profe3.jpg')
+    profe4 = os.path.join(app.config['UPLOAD_FOLDER'], 'profe4.jpg')
+    
+    return render_template('docentes.html',profe1=profe1, profe2=profe2 , profe3=profe3, profe4=profe4)
 
-@app.route('/info', methods=["GET", "POST"])
+@app.route('/info', methods = ["GET","POST"])
 def info():
-  return render_template('info.html')
+    return render_template('info.html')
 
-
-@app.route('/calificaciones', methods=["GET", "POST"])
+@app.route('/calificaciones', methods = ["GET","POST"])
 def calificaciones():
-  return render_template('calificaciones.html')
+    # Crear un cursor
+    cursor = connection.cursor()
+    # Verificar si el nombre de usuario y la contraseña son válidos
+    query = 'select e.nombre, e.apellido from estudiante AS e where e.curso = (SELECT p.curso_dirigido from profesor AS p where p.id_profesor = %s);'
+    connection.ping()
+    cursor.execute(query, (valor_id))
+    result = cursor.fetchall()
+    return render_template('calificaciones.html', resultado = result)
+   
 
-
-@app.route('/maestro', methods=["GET", "POST"])
+@app.route('/maestro', methods = ["GET","POST"])
 def maestro():
-  return render_template('maestro.html')
+    return render_template('maestro.html')
 
-
-@app.route('/calificar', methods=["GET", "POST"])
+@app.route('/calificar', methods = ["GET","POST"])
 def calificar():
-  return render_template('calificar_estudiantes.html')
+    return render_template('calificar_estudiantes.html')
+
+@app.route('/administrador', methods = ["GET","POST"])
+def administrador():
+    return render_template('administrador.html')
+
+@app.route('/inscribirEstudiante', methods = ["GET","POST"])
+def inscribirEst():
+    connection.ping()
+    return render_template('inscribir_estudiante.html')
+
+@app.route('/inscribirDocente', methods = ["GET","POST"])
+def inscribirDoce():
+    connection.ping()
+    return render_template('inscribir_docente.html')
 
 
 ##ejecutar el servicio web
