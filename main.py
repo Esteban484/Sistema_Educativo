@@ -163,14 +163,19 @@ def alumno1():
         return redirect(url_for('login'))
     
 
-@app.route('/about', methods = ["GET","POST"])
+@app.route('/about', methods=["GET", "POST"])
 def about():
-    cami = os.path.join(app.config['UPLOAD_FOLDER'], 'cami.jpeg')
-    joss = os.path.join(app.config['UPLOAD_FOLDER'], 'joss.jpeg')
-    gus = os.path.join(app.config['UPLOAD_FOLDER'], 'gus.jpg')
-    jona = os.path.join(app.config['UPLOAD_FOLDER'], 'jona.jpg')
-    alexis = os.path.join(app.config['UPLOAD_FOLDER'], 'alexis.jpeg')
-    return render_template('about.html',cami=cami, joss=joss , gus=gus, jona=jona,alexis=alexis)
+  joel = os.path.join(app.config['UPLOAD_FOLDER'], 'joel.jpeg')
+  robbi = os.path.join(app.config['UPLOAD_FOLDER'], 'robbi.jpg')
+  fer = os.path.join(app.config['UPLOAD_FOLDER'], 'fer.jpg')
+  nando = os.path.join(app.config['UPLOAD_FOLDER'], 'nando.jpg')
+  esteban = os.path.join(app.config['UPLOAD_FOLDER'], 'esteban.jpg')
+  return render_template('about.html',
+                         joel=joel,
+                         robbi=robbi,
+                         fer=fer,
+                         nando=nando,
+                         esteban=esteban)
 
 @app.route('/docentes', methods = ["GET","POST"])
 def docentes():
